@@ -1,8 +1,21 @@
 body {
 	background-color: #232323;
+	margin: 0;
+	font-family: "Montserrat", "Avenir";
+
 }
 h1 {
+	text-align: center;
+	line-height: 1.1;
 	color: white;
+	background: steelblue;
+	font-weight: normal;
+	margin: 0;
+	text-transform: uppercase;
+	padding: 20px 0;
+}
+#colorDisplay{
+	font-size: 200%;
 }
 .square {
 	width: 30%;
@@ -22,4 +35,8 @@ h1 {
 	height: 30px;
 	text-align: center;
 	color: black;
+}
+
+.selected {
+	background: blue;
 }
