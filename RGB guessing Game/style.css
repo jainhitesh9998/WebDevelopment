@@ -38,5 +38,25 @@ h1 {
 }
 
 .selected {
-	background: blue;
+	color: white;
+	background: steelblue;
+}
+button {
+	border: none;
+	background: none;
+	text-transform: uppercase;
+	height: 100%;
+	font-weight: 700;
+	color: steelblue;
+	letter-spacing: 1px;
+	font-size: inherit;
+	transition: all 0.3s;
+}
+button:hover {
+	color: white;
+	background: steelblue;
+}
+#message {
+	display: inline-block;
+	width: 20%;
 }
