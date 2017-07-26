@@ -15,7 +15,6 @@ app.get("/dog", function(req, res){
     console.log("someone made a request to  /dog")
    res.send("meow"); 
 });
-
 app.get("/r/:subRedditName", function(req, res){
     //console.log(req);
     var subreddit = "WELCOME TO THE " + req.params.subRedditName + " SUBREDDIT";
