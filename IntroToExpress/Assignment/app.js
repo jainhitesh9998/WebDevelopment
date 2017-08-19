@@ -19,6 +19,25 @@ app.get("/speak/:name", function(req, res){
    }
 });
 
+app.get("/repeat/:word/:times", function(req, res) {
+    var isnum = /^\d+$/.test(req.params.times);
+    if(isnum){
+        var times = Number(req.params.times);
+    }
+    var result = "";
+    //console.log(typeof times);
+    if(typeof times === 'number'){
+        for(var i = 1; i< times; i++){
+            result = result + req.params.word + " ";
+        }
+        result = result + req.params.word;
+        res.send(result);
+    }
+    else {
+        res.send("Sorry The page not found..........    What are  you doing with your life!!");
+    }
+});
+
 app.get("*", function(req, res) {
     res.send("Sorry The page not found..........    What are  you doing with your life!!");
 })
