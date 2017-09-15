@@ -6,14 +6,10 @@ request('http://www.google.com', function (error, response, body) {
 });*/
 
 var request = require("request");
-request("https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400", function(error, response, body) {
-    if(error){
-        console.log("you have encountered an error!!!");
-        console.log(error);
-    } else{
-        if(response.statusCode == 200){
-            console.log("THings worked");
-            console.log(body);
-        }
-    }
+request("https://query.yahooapis.com/v1/public/yql?q=select%20astronomy.sunset%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22maui%2C%20hi%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys", function(error, response, body) {
+    if(!error && response.statusCode == 200){
+        var data = JSON.parse(body);
+        console.log("sunset in hawaiii is at ");
+        console.log(data["query"]["results"]["channel"]["astronomy"]["sunset"]);
+    } 
 });
