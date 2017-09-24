@@ -23,7 +23,7 @@ var campgrounds = [
           {name: "Old Trafford", image: "https://farm5.staticflickr.com/4007/4489630578_73c0948a76.jpg"}, 
           {name: "Allianz Arena", image: "https://farm4.staticflickr.com/3241/2925011226_c150c7e78b.jpg"}
     ];
-    
+
 app.get("/", function(req, res){
     res.render("landing");
 });
