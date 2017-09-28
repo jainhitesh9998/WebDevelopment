@@ -39,7 +39,6 @@ Cat.create({
     }
 });
 //retrive all cats from DB
-
 Cat.find({name: "Mrs. Norris"}, function(err, cats){
    if(err){
        console.log("Oh No error");
