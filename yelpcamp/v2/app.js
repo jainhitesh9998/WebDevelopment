@@ -1,37 +1,54 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose");
 
+mongoose.connect("mongodb://localhost/yelp_camp",{useMongoClient: true});
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-var campgrounds = [
-          {name: "salmon creek", image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg"}, 
-          {name: "Granite Hill", image: "https://farm3.staticflickr.com/2259/2182093741_164dc44a24.jpg"}, 
-          {name: "Old Trafford", image: "https://farm5.staticflickr.com/4007/4489630578_73c0948a76.jpg"}, 
-          {name: "Allianz Arena", image: "https://farm4.staticflickr.com/3241/2925011226_c150c7e78b.jpg"},
-          {name: "salmon creek", image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg"}, 
-          {name: "Granite Hill", image: "https://farm3.staticflickr.com/2259/2182093741_164dc44a24.jpg"}, 
-          {name: "Old Trafford", image: "https://farm5.staticflickr.com/4007/4489630578_73c0948a76.jpg"}, 
-          {name: "Allianz Arena", image: "https://farm4.staticflickr.com/3241/2925011226_c150c7e78b.jpg"},
-          {name: "salmon creek", image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg"}, 
-          {name: "Granite Hill", image: "https://farm3.staticflickr.com/2259/2182093741_164dc44a24.jpg"}, 
-          {name: "Old Trafford", image: "https://farm5.staticflickr.com/4007/4489630578_73c0948a76.jpg"}, 
-          {name: "Allianz Arena", image: "https://farm4.staticflickr.com/3241/2925011226_c150c7e78b.jpg"},
-          {name: "salmon creek", image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg"}, 
-          {name: "Granite Hill", image: "https://farm3.staticflickr.com/2259/2182093741_164dc44a24.jpg"}, 
-          {name: "Old Trafford", image: "https://farm5.staticflickr.com/4007/4489630578_73c0948a76.jpg"}, 
-          {name: "Allianz Arena", image: "https://farm4.staticflickr.com/3241/2925011226_c150c7e78b.jpg"}
-    ];
+
+//Schema Setup
+var campgroundSchema = new mongoose.Schema({
+   name: String,
+   image: String,
+   description: String
+});
+
+
+
+var Campground = mongoose.model("Campground", campgroundSchema);
+
+// Campground.create(
+//     {
+//         name: "Granite Hill", 
+//         image: "https://farm3.staticflickr.com/2259/2182093741_164dc44a24.jpg",
+//         description: "This is a huge granite hil, No Bathrooms, No Water, Beautiful Granite!"
+//     }, function(err, campground){
+//         if(err){
+//             console.log(err);
+//         }else{
+//             console.log("Newly Created Campground");
+//             console.log(campground);
+//         }
+//     }
+// );
+
 
 app.get("/", function(req, res){
     res.render("landing");
 });
 
 app.get("/campgrounds", function(req, res){
-    
-    
-    res.render("campgrounds", {campgrounds: campgrounds});
+    //Get All Campgrounds
+    Campground.find({}, function(err, allCampgrounds){
+       if(err){
+            console.log(err);
+       }else{
+           res.render("index", {campgrounds: allCampgrounds});
+       } 
+    });
+    // res.render("campgrounds", {campgrounds: campgrounds});
 });
 
 
@@ -40,13 +57,34 @@ app.post("/campgrounds",function(req, res){
     //redirect to the campground array
     var name = req.body.name;
     var image = req.body.image;
-    var newCampgrounds = {name: name, image: image};
-    campgrounds.push(newCampgrounds);
-    res.redirect("/campgrounds");
+    var desc = req.body.description;
+    var newCampgrounds = {name: name, image: image, description: desc};
+    //create a new campground and save to the DB
+    Campground.create(newCampgrounds, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        }else{
+            //Redirect to campground page
+            res.redirect("/campgrounds");
+        }
+    });
 });
 
 app.get("/campgrounds/new", function(req, res) {
    res.render("new"); 
+});
+
+//Show us more Info  about the campgrounds
+app.get("/campgrounds/:id", function(req, res){
+    //fing the campground woth the provided id 
+    Campground.findById(req.params.id, function(err, foundCampground){
+       if(err){
+           console.log(err);
+       } else{
+           res.render("show", {campground: foundCampground});
+       }
+    });
+    //render show template with that campground
 });
 
 app.listen(process.env.PORT, process.env.IP, function(req, res){
