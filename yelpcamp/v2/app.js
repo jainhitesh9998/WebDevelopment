@@ -87,6 +87,7 @@ app.get("/campgrounds/:id", function(req, res){
     //render show template with that campground
 });
 
+
 app.listen(process.env.PORT, process.env.IP, function(req, res){
     console.log("The YelpCamp server started");
 });
