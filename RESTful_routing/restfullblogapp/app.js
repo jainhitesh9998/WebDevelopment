@@ -24,10 +24,17 @@ var blog = mongoose.model("Blog", blogSchema);
 
 
 //Routes
+app.get("/", function(req, res) {
+    res.redirect("/blogs")
+});
+
+app.get("/blogs", function(req, res){
+    res.render("index"); 
+});
 
 
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(process.env.PORT, process.env.IP, function(req, res){
    console.log("Server is Up"); 
 });
     
