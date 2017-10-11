@@ -20,7 +20,7 @@ var blogSchema = new mongoose.Schema({
     }
 });
 
-var blog = mongoose.model("Blog", blogSchema);
+var Blog = mongoose.model("Blog", blogSchema);
 
 
 //Routes
@@ -29,7 +29,13 @@ app.get("/", function(req, res) {
 });
 
 app.get("/blogs", function(req, res){
-    res.render("index"); 
+    Blog.find({}, function(err, blogs){
+        if(err){
+            console.log("error");
+        }else{
+            res.render("index", {blogs: blogs});
+        }
+    })
 });
 
 
