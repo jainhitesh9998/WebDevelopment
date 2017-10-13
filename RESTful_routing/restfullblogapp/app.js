@@ -20,7 +20,6 @@ var blogSchema = new mongoose.Schema({
     }
 });
 
-
 var Blog = mongoose.model("Blog", blogSchema);
 
 
