@@ -26,7 +26,7 @@ var Blog = mongoose.model("Blog", blogSchema);
 
 //Routes
 app.get("/", function(req, res) {
-    res.redirect("/blogs")
+    res.redirect("/blogs");
 });
 
 app.get("/blogs", function(req, res){
