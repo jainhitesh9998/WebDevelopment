@@ -59,6 +59,11 @@ app.post("/blogs", function(req, res){
    
 });
 
+//show Routes
+app.get("/blogs/:id", function(req, res) {
+    res.send("Show PAge");
+});
+
 
 app.listen(process.env.PORT, process.env.IP, function(req, res){
    console.log("Server is Up"); 
