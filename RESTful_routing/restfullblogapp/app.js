@@ -61,7 +61,13 @@ app.post("/blogs", function(req, res){
 
 //show Routes
 app.get("/blogs/:id", function(req, res) {
-    res.send("Show PAge");
+    Blog.findById(req.params.id, function(err, foundBlog){
+       if(err){
+           res.redirect("/blogs");
+       } else{
+           res.render("show", {blog: foundBlog});
+       }
+    });
 });
 
 
