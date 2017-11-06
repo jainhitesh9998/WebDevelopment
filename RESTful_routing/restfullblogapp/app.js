@@ -70,6 +70,10 @@ app.get("/blogs/:id", function(req, res) {
     });
 });
 
+//EDIT Route
+app.get("/blogs/:id/edit", function(req, res) {
+   res.render("edit"); 
+});
 
 app.listen(process.env.PORT, process.env.IP, function(req, res){
    console.log("Server is Up"); 
