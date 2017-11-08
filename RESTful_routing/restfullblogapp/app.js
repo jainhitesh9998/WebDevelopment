@@ -82,6 +82,11 @@ app.get("/blogs/:id/edit", function(req, res) {
    //res.render("edit"); 
 });
 
+//update route
+app.put("/blogs/:id", function(req, res){
+   res.send("UPDATE ROUTE!!"); 
+});
+
 app.listen(process.env.PORT, process.env.IP, function(req, res){
    console.log("Server is Up"); 
 });
