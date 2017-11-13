@@ -22,18 +22,6 @@ var Post = mongoose.model("Post", postSchema);
 
 
 
-// var newUser = new User({
-//     email : "abc@gmail.com",
-//     name : "Abc"
-// });
-// newUser.save(function(err, user){
-//   if(err){
-//       console.log(err);
-//   } else {
-//       console.log(user);
-//   }
-// });
-
 
 var newPost = new Post({
     title: "Game Of Thrones",
