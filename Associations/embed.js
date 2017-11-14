@@ -20,9 +20,6 @@ var postSchema = new mongoose.Schema({
 
 var Post = mongoose.model("Post", postSchema);
 
-
-
-
 var newPost = new Post({
     title: "Game Of Thrones",
     content: "Game of thrones is the greatest tv series of all times"
