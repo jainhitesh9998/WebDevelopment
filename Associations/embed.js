@@ -25,10 +25,10 @@ var newPost = new Post({
     content: "Game of thrones is the greatest tv series of all times"
 });
 
-newPost.save(function(err, post){
-    if(err){
-        console.log(err);
-    } else{
-        console.log(post);
-    }
-});
+// newPost.save(function(err, post){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log(post);
+//     }
+// });
