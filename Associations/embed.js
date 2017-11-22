@@ -2,15 +2,6 @@ var mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost/blog_demo", {useMongoClient:true});
 
-//user email, name
-
-var userSchema = new mongoose.Schema({
-    email: String,
-    name : String
-});
-
-var User = mongoose.model("User", userSchema);
-
 //post TITLE, content
 
 var postSchema = new mongoose.Schema({
@@ -19,16 +10,44 @@ var postSchema = new mongoose.Schema({
 });
 
 var Post = mongoose.model("Post", postSchema);
+//Embed post to user
+//user email, name
+
+var userSchema = new mongoose.Schema({
+    email: String,
+    name : String,
+    posts: [postSchema]
+});
+
+var User = mongoose.model("User", userSchema);
+
+var newUser = new User({
+   email: "random@random.com",
+   name:"random",
+});
+
+newUser.posts.push({
+    title:"How to train a dragon",
+    content: "see the movie"
+})
+
+newUser.save(function(err, user){
+    if(err){
+        console.log(err);
+    } else{
+        console.log(user);
+    }
+});
 
 var newPost = new Post({
     title: "Game Of Thrones",
     content: "Game of thrones is the greatest tv series of all times"
 });
 
-newPost.save(function(err, post){
-    if(err){
-        console.log(err);
-    } else{
-        console.log(post);
-    }
-});
+// newPost.save(function(err, post){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log(post);
+//     }
+// });
