@@ -21,28 +21,28 @@ var userSchema = new mongoose.Schema({
 
 var User = mongoose.model("User", userSchema);
 
-var newUser = new User({
-   email: "random@random.com",
-   name:"random",
-});
+// var newUser = new User({
+//   email: "random@random.com",
+//   name:"random",
+// });
 
-newUser.posts.push({
-    title:"How to train a dragon",
-    content: "see the movie"
-})
+// newUser.posts.push({
+//     title:"How to train a dragon",
+//     content: "see the movie"
+// })
 
-newUser.save(function(err, user){
-    if(err){
-        console.log(err);
-    } else{
-        console.log(user);
-    }
-});
+// newUser.save(function(err, user){
+//     if(err){
+//         console.log(err);
+//     } else{
+//         console.log(user);
+//     }
+// });
 
-var newPost = new Post({
-    title: "Game Of Thrones",
-    content: "Game of thrones is the greatest tv series of all times"
-});
+// var newPost = new Post({
+//     title: "Game Of Thrones",
+//     content: "Game of thrones is the greatest tv series of all times"
+// });
 
 // newPost.save(function(err, post){
 //     if(err){
@@ -51,3 +51,15 @@ var newPost = new Post({
 //         console.log(post);
 //     }
 // });
+
+User.findOne({name: "random"},function(err, user){
+    if(err){
+        console.log(err);
+    } else{
+        console.log(user);
+        // user.posts.push({
+        //     title: "Despicable Me",
+        //     content: "Best Movie???"
+        // });
+    }
+})
