@@ -56,10 +56,18 @@ User.findOne({name: "random"},function(err, user){
     if(err){
         console.log(err);
     } else{
+        //console.log(user);
+        user.posts.push({
+            title: "Despicable Me 2",
+            content: "Best Movie??? better movie are there"
+        });
+        user.save(function(err, user){
+           if(err){
+        console.log(err);
+        } else{
         console.log(user);
-        // user.posts.push({
-        //     title: "Despicable Me",
-        //     content: "Best Movie???"
-        // });
+        
+        } 
+        });
     }
 })
