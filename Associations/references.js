@@ -37,6 +37,7 @@ var User = mongoose.model("User", userSchema);
         ]
 };
 
+
 {
     name: "asfassdfs",
     posts: [
