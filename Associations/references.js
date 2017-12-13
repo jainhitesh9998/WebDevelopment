@@ -26,16 +26,16 @@ var userSchema = new mongoose.Schema({
 
 var User = mongoose.model("User", userSchema);
 
-{
-    name: "asfassdfs",
-    posts: [
-            {title: "asdasdads", content: "asassfksdfsjk"},
-            {title: "asdasdads", content: "asassfksdfsjk"},
-            {title: "asdasdads", content: "asassfksdfsjk"},
-            {title: "asdasdads", content: "asassfksdfsjk"},
-            {title: "asdasdads", content: "asassfksdfsjk"}
-        ]
-};
+// {
+//     name: "asfassdfs",
+//     posts: [
+//             {title: "asdasdads", content: "asassfksdfsjk"},
+//             {title: "asdasdads", content: "asassfksdfsjk"},
+//             {title: "asdasdads", content: "asassfksdfsjk"},
+//             {title: "asdasdads", content: "asassfksdfsjk"},
+//             {title: "asdasdads", content: "asassfksdfsjk"}
+//         ]
+// };
 
 
 {
