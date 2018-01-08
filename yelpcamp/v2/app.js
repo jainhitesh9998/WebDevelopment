@@ -14,8 +14,6 @@ var campgroundSchema = new mongoose.Schema({
    image: String,
    description: String
 });
-
-
 var Campground = mongoose.model("Campground", campgroundSchema);
 
 // Campground.create(
