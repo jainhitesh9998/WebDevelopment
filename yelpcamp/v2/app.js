@@ -15,7 +15,6 @@ var campgroundSchema = new mongoose.Schema({
    description: String
 });
 var Campground = mongoose.model("Campground", campgroundSchema);
-
 // Campground.create(
 //     {
 //         name: "Granite Hill", 
